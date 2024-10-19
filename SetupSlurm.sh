@@ -39,12 +39,14 @@ echo "Copying configuration files"
 cp ./slurm.conf /etc/slurm/slurm.conf || { echo "Failed to copy slurm.conf"; exit 1; }
 cp ./munge.key /etc/munge/munge.key || { echo "Failed to copy munge.key"; exit 1; }
 cp ./cgroup.conf /etc/slurm/cgroup.conf || { echo "Failed to copy cgroup.conf"; exit 1; }
+cp ./slurm_reboot.sh /usr/local/bin/slurm_reboot.sh || { echo "Failed to copy slurm_reboot.sh"; exit 1; }
 
 # Ensure proper permissions for Slurm and Munge directories
 echo "Ensuring proper permissions for Slurm and Munge directories"
 chown -R slurm:slurm /etc/slurm
 chown -R munge:munge /etc/munge
 chmod 700 /etc/munge/munge.key
+chmod 755 /usr/local/bin/slurm_reboot.sh 
 
 # Restart Munge and Slurm services to apply the changes
 echo "Restarting Munge and Slurm services"
